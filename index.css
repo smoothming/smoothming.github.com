@@ -1,0 +1,11 @@
+body{background:#f7f7f7;}
+/*header*/
+.header{position:relative;height:200px;overflow:hidden;width:100%;background:#fff;box-shadow:0 16px 30px rgba(0,0,0,0.16);transition:all .2s ease-in-out;}
+.header:hover{height:350px;}
+h1{text-align:center;line-height:200px;font-size:60px;}
+.btn{position:absolute;top:200px;left:0;width:100%;text-align:center;height:100px;padding:0 0 50px 0;}
+.btn a{float:left;width:33.33%;}
+.btn a span{display:block;width:100px;height:100px;border-radius:100%;line-height:100px;color:#fff;background:#f0f;margin:0 auto;border:5px solid #fff;box-shadow:0 9px 15px rgba(0,0,0,0.08)}
+.btn a span.zk{background:#FEE94E;}
+.btn a span.wb{background:#FF2D55;}
+.btn a span.tw{background:#5AC8FA;}

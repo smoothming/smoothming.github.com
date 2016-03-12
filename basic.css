@@ -1,0 +1,34 @@
+/*去除标签边距*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strike,strong,sub,sup,tt,var,i,dl,dt,dd,ol,ul,li,form,fieldset,label,legend,table,caption,tbody,thead,tfoot,tr,th,
+td,article,aside,canvas,details,figure,figcaption,header,footer,hgroup,menu,nav,output,section,summary,time,mark,audio,video,input,select,button{margin:0;padding:0;font-size:16px;font-family:'微软雅黑',Arial;}
+ul,ol,dl,li,dt,dd{list-style:none;}
+
+select,input{vertical-align:middle;}
+
+a {text-decoration:none}
+/*浮动*/
+.fl{float:left;}
+.fr{float:right;}
+.cf{zoom:1;}
+.cf:after{display:block;content:'.';clear:both;line-height:0;visibility:hidden;}
+/*合并表格*/
+table{border-collapse:collapse;}
+input,select,button{outline:none;}
+/*h5标签*/
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+/*去除图片边框*/
+img{border:0;}
+a, button, input,select,textarea{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;outline:none; }
+select{-webkit-appearance:none;}
+input[type="submit"],input[type="reset"],input[type="button"],button,input[type="search"]{ -webkit-appearance: none; /*去掉苹果的默认UI来渲染按钮*/}
+input::-webkit-search-cancel-button { display: none; }
+/*去除search默认样式*/
+input::-webkit-search-cancel-button {display: none;}
+input::-webkit-input-placeholder {
+    color:#999;
+}
+input:-moz-placeholder {
+    color:#999;
+}
+
+
