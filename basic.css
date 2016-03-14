@@ -1,6 +1,6 @@
 /*去除标签边距*/
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strike,strong,sub,sup,tt,var,i,dl,dt,dd,ol,ul,li,form,fieldset,label,legend,table,caption,tbody,thead,tfoot,tr,th,
-td,article,aside,canvas,details,figure,figcaption,header,footer,hgroup,menu,nav,output,section,summary,time,mark,audio,video,input,select,button{margin:0;padding:0;font-size:16px;font-family:'微软雅黑',Arial;}
+td,article,aside,canvas,details,figure,figcaption,header,footer,hgroup,menu,nav,output,section,summary,time,mark,audio,video,input,select,button{margin:0;padding:0;font-size:16px;font-family: 'PingFang SC', 'Myriad Pro', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;}
 ul,ol,dl,li,dt,dd{list-style:none;}
 
 select,input{vertical-align:middle;}
