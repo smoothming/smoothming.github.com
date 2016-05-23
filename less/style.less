@@ -1,0 +1,549 @@
+@charset"utf-8";
+//匹配模式--定位
+.pos(r){position:relative;}
+.pos(a){position:absolute;}
+.pos(f){position:fixed;}
+.pos-box(@w:500px,@h:400px,@pos:absolute){
+  width: @w;
+  height: @h;
+  position: @pos;
+  left:0;
+  top:0;
+}
+.height(@h){
+  height:@h;
+  line-height:@h;
+}
+//定位居中
+.pos-box-cc(@w:600px,@h:360px,@pos:absolute){
+  width: @w;
+  height: @h;
+  position: @pos;
+  left: 50%;
+  top: 50%;
+  margin-left: -@w / 2;
+  margin-top: -@h / 2;
+}
+// 三角箭头 朝向
+.triangle(top,@w:30px,@c:#333){
+	border-width:@w;
+	border-style:solid dashed dashed dashed;
+	border-color:@c transparent transparent transparent;
+}
+.triangle(bottom,@w:30px,@c:#333){
+	border-width:@w;
+	border-style:dashed dashed solid dashed;
+	border-color:transparent transparent @c transparent;
+}
+.triangle(left,@w:30px,@c:#333){
+	border-width:@w;
+	border-style:dashed dashed dashed solid;
+	border-color:transparent transparent transparent @c;
+}
+.triangle(right,@w:30px,@c:#333){
+	border-width:@w;
+	border-style:dashed solid dashed dashed;
+	border-color:transparent @c transparent transparent;
+}
+.triangle(@_,@w:30px,@c:#333){
+	width:0;
+	height:0;
+	overflow:hidden;
+}
+.sanjiao_top{
+	.triangle(top,25px,#f00)
+}
+.sanjiao_bottom{
+	.triangle(bottom,25px,#f00)
+}
+.sanjiao_left{
+	.triangle(left,25px,#f00)
+}
+.sanjiao_right{
+	.triangle(bottom,25px,#f00)
+}
+// border 边框大小
+.border(@border_width:2px){
+	border:@border_width solid #ddd;
+}
+// border-radius
+.border-radius(@radius: 5px){
+	-webkit-border-radius: @radius;
+	   -moz-border-radius: @radius;
+	        border-radius: @radius;
+}
+//单角
+.border-top-left-radius(@radius: 5px) {
+  -webkit-border-top-left-radius: @radius;
+      -moz-border-radius-topleft: @radius;
+          border-top-left-radius: @radius;
+}
+.border-top-right-radius(@radius: 5px) {
+  -webkit-border-top-right-radius: @radius;
+      -moz-border-radius-topright: @radius;
+          border-top-right-radius: @radius;
+}
+.border-bottom-right-radius(@radius: 5px) {
+  -webkit-border-bottom-right-radius: @radius;
+      -moz-border-radius-bottomright: @radius;
+          border-bottom-right-radius: @radius;
+}
+.border-bottom-left-radius(@radius: 5px) {
+  -webkit-border-bottom-left-radius: @radius;
+      -moz-border-radius-bottomleft: @radius;
+          border-bottom-left-radius: @radius;
+}
+//单边
+.border-top-radius(@radius: 5px) {
+  .border-top-right-radius(@radius);
+  .border-top-left-radius(@radius);
+}
+.border-right-radius(@radius: 5px) {
+  .border-top-right-radius(@radius);
+  .border-bottom-right-radius(@radius);
+}
+.border-bottom-radius(@radius: 5px) {
+  .border-bottom-right-radius(@radius);
+  .border-bottom-left-radius(@radius);
+}
+.border-left-radius(@radius: 5px) {
+  .border-top-left-radius(@radius);
+  .border-bottom-left-radius(@radius);
+}
+// box-shadow
+.box-shadow(@shadow: 0px 0px 5px #ccc) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+// * font-face 自定义字体
+// * @params        @path: 字体路径; @font-name: 字体名字; 需要同时存在eot woff ttf svg
+.font-face(@path, @font-name){
+        @font-face{
+                font-family: @font-name;
+                src: url('@path/@{font-name}.eot'); /* IE9 Compat Modes */
+                src: url('@path/@{font-name}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+                     url('@path/@{font-name}.woff') format('woff'), /* Modern Browsers */
+                     url('@path/@{font-name}.ttf')  format('truetype'), /* Safari, Android, iOS */
+                     url('@path/@{font-name}.svg#svgFontName') format('svg'); /* Legacy iOS */
+        }
+}
+
+.linear-gradient(@startColor,@endColor){
+
+        @argbStartColor:argb(@startColor);
+        @argbEndColor:argb(@endColor);
+
+        background-image: -moz-linear-gradient(top,@startColor,@endColor);  /* FF3.6+ */
+        background-image: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor)); /* Saf4+, Chrome */
+        background-image: -webkit-linear-gradient(top, @startColor, @endColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+        background-image: -ms-linear-gradient(top,@startColor,@endColor); /* IE10 */
+        background-image: -o-linear-gradient(top,@startColor,@endColor); /* Opera 11.10+ */
+        background-image: linear-gradient(top, @startColor, @endColor);
+        filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=@{argbStartColor},endColors=@{argbEndColor})";
+        
+}
+// * opacity  透明度
+.opacity(@opacity: 80) {
+  opacity: @opacity / 100;
+  filter: ~"alpha(opacity=@{opacity})";
+}
+.rgba(@red, @green, @blue, @alpha:1){
+        @filtercolor:`(_f = function(d{var v = (parseInt(d)|0).toString(16);return v.length<2 ? "0"+v : v;},
+                                        '#'+_f(@{alpha}*255) + _f(@{red}) + _f(@{green})+ _f(@{blue}))`;
+        
+        background-color: ~'rgba(@{red},@{green},@{blue},@{alpha})';
+        -ms-filter:~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{filtercolor}',endColorstr='@{filtercolor}')";
+        filter:~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{filtercolor}',endColorstr='@{filtercolor}')";       
+}
+// * 支持多重阴影
+//*/
+
+.text-shadow(@shadow: 0px 0px 2px #333){
+        text-shadow: @shadow;
+}
+.text-shadow(@shadow: 5px 5px 5px #333, @rest...){
+        text-shadow: @shadow, @rest;
+}
+// 旋转
+.rotate(@degrees: 0deg) {
+  -webkit-transform: rotate(@degrees);
+     -moz-transform: rotate(@degrees);
+      -ms-transform: rotate(@degrees);
+       -o-transform: rotate(@degrees);
+          transform: rotate(@degrees);
+}
+.rotate3d(@x: 0, @y: 0, @z: 0, @degrees: 0deg){
+  -webkit-transform: rotate3d(@arguments);
+     -moz-transform: rotate3d(@arguments);
+      -ms-transform: rotate3d(@arguments);
+       -o-transform: rotate3d(@arguments);
+          transform: rotate3d(@arguments);
+}
+.rotateX(@degrees: 0deg){
+  -webkit-transform: rotateX(@arguments);
+     -moz-transform: rotateX(@arguments);
+      -ms-transform: rotateX(@arguments);
+       -o-transform: rotateX(@arguments);
+          transform: rotateX(@arguments);
+}
+.rotateY(@degrees: 0deg){
+  -webkit-transform: rotateY(@arguments);
+     -moz-transform: rotateY(@arguments);
+      -ms-transform: rotateY(@arguments);
+       -o-transform: rotateY(@arguments);
+          transform: rotateY(@arguments);
+}
+.rotateZ(@degrees: 0deg){
+  -webkit-transform: rotateZ(@arguments);
+     -moz-transform: rotateZ(@arguments);
+      -ms-transform: rotateZ(@arguments);
+       -o-transform: rotateZ(@arguments);
+          transform: rotateZ(@arguments);
+}
+// 放大缩小
+.scale(@x:0, @y:0) {
+  -webkit-transform: scaleX(@x) scaleY(@y);
+     -moz-transform: scaleX(@x) scaleY(@y);
+      -ms-transform: scaleX(@x) scaleY(@y); 
+      -ms-transform: scaleX(@arguments);  
+       -o-transform: scaleX(@arguments);
+          transform: scaleX(@arguments);
+}
+.scaleY(@y: 0) {
+  -webkit-transform: scaleY(@arguments);
+     -moz-transform: scaleY(@arguments);
+      -ms-transform: scaleY(@arguments); 
+       -o-transform: scaleY(@arguments);
+          transform: scaleY(@arguments);
+}
+// 从新定位
+//重定位元素
+.translate(@x: 0px, @y: 0px) {
+  -webkit-transform: translate(@arguments);
+     -moz-transform: translate(@arguments);
+      -ms-transform: translate(@arguments);
+       -o-transform: translate(@arguments);
+          transform: translate(@arguments);
+}
+.translate3d(@x: 0px, @y: 0px, @z: 0px) {
+  -webkit-transform: translate3d(@arguments);
+     -moz-transform: translate3d(@arguments);
+       -o-transform: translate3d(@arguments);
+          transform: translate3d(@arguments);
+}
+.translateX(@x: 0px){
+  -webkit-transform: translateX(@x);
+     -moz-transform: translateX(@x);
+      -ms-transform: translateX(@x);
+       -o-transform: translateX(@x);
+          transform: translateX(@x);
+}
+.translateY(@y: 0px){
+  -webkit-transform: translateY(@y);
+     -moz-transform: translateY(@y);
+      -ms-transform: translateY(@y);
+       -o-transform: translateY(@y);
+          transform: translateY(@y);
+}
+.translateZ(@z: 0px){
+  -webkit-transform: translateZ(@z);
+     -moz-transform: translateZ(@z);
+      -ms-transform: translateZ(@z);
+       -o-transform: translateZ(@z);
+          transform: translateZ(@z);
+}
+//倾斜
+.skew(@x: 0deg, @y: 0deg) {
+  -webkit-transform: skew(@arguments);
+     -moz-transform: skew(@arguments);
+      -ms-transform: skewX(@x) skewY(@y); 
+       -o-transform: skew(@arguments);
+          transform: skew(@arguments);
+  -webkit-backface-visibility: hidden;
+}
+.skewX(@x: 0deg) {
+  -webkit-transform: skewX(@x);
+     -moz-transform: skewX(@x);
+      -ms-transform: skewX(@x);
+       -o-transform: skewX(@x);
+          transform: skewX(@x);
+  -webkit-backface-visibility: hidden;
+  //Webkit gives a pixelated edge. This can be resolved by adding the following line to the mixin. -webkit-backface-visibility: hidden;
+}
+.skewY(@y: 0deg) {
+  -webkit-transform: skewY(@y);
+     -moz-transform: skewY(@y);
+      -ms-transform: skewY(@y); 
+       -o-transform: skewY(@y);
+          transform: skewY(@y);
+  -webkit-backface-visibility: hidden;
+}
+// * transition css3 动画
+// * @params  [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'> 
+// *              [, [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'>]]*
+// * 详细可以查看 http://www.w3.org/TR/css3-transitions/
+// */
+
+
+.transition(@transition) {
+  -webkit-transition: @transition;
+    -moz-transition: @transition;
+       -o-transition: @transition;
+          transition: @transition;
+}
+.cs3move(@who:all,@operation:ease,@timer:.3s){
+  -webkit-transition:@who @operation @timer;
+  -moz-transition:@who @operation @timer;
+  -ms-transition:@who @operation @timer;
+  -o-transition:@who @operation @timer;
+  transition:@who @operation @timer;
+}
+
+//**
+// * 延迟时间
+// * @type {time} 如0s
+// */
+.transition-delay(@transition-delay: 0s) {
+  -webkit-transition-delay: @transition-delay;
+     -moz-transition-delay: @transition-delay;
+       -o-transition-delay: @transition-delay;
+          transition-delay: @transition-delay;
+}
+
+//**
+// * 持续时间
+// * @type {time} 如0s
+// */
+.transition-duration(@transition-duration: 0s){
+        -webkit-transition-duration: @transition-duration;
+     -moz-transition-duration: @transition-duration;
+       -o-transition-duration: @transition-duration;
+          transition-duration: @transition-duration;
+}
+
+//**
+// * 需要transition的属性
+// * @type: {css-property}
+// */
+.transition-property(@transition-property){
+  -webkit-transition-property: @transition-property;
+     -moz-transition-property: @transition-property;
+       -o-transition-property: @transition-property;
+          transition-property: @transition-property;
+}
+
+//**
+// * 时间函数
+// * @param  {
+// *         [ ease | linear | ease-in | ease-out | ease-in-out | step-start | step-end | 
+// *         steps(<integer>[, [ start | end ] ]?) | cubic-bezier(<number>, <number>, <number>, <number>) ] 
+// *         [, [ ease | linear | ease-in | ease-out | ease-in-out | step-start | step-end | 
+// *         steps(<number>[, [ start | end ] ]?) | cubic-bezier(<number>, <number>, <number>, <number>) ] ]*
+// * } 
+// * @transition-timing: ease          [description]
+// */
+.transition-timing-function(@transition-timing: ease){
+        -webkit-transition-timing-function: @transition-timing;
+     -moz-transition-timing-function: @transition-timing;
+       -o-transition-timing-function: @transition-timing;
+          transition-timing-function: @transition-timing;
+}
+
+
+//**
+// * user-select
+// * @params        none | text | all | element
+//*/
+
+.user-select(@select: auto) {
+  -webkit-user-select: @select;
+     -moz-user-select: @select;
+      -ms-user-select: @select;
+       -o-user-select: @select;
+          user-select: @select;
+}
+// box-sizing
+.border-box(){
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+          box-sizing:border-box;
+}
+// 清除浮动
+.cf() {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+.fl(){
+  float:left;
+}
+.fr(){
+  float:right;
+}
+//添加下划线
+.tu(){
+  text-decoration: underline;
+}
+.tn(){
+  text-decoration: none;
+}
+.tl(){
+  text-align: left;
+}
+.text-l(){
+  text-align: left;
+}
+.tc(){
+  text-align: center;
+}
+.text-c(){
+  text-align: center;
+}
+.tr(){
+  text-align: right;
+}
+.text-r(){
+  text-align: right;
+}
+//font weight
+.font-w700(){
+  font-weight: 700;
+}
+.font-wb(){
+  font-weight: bold;
+}
+.font-w400(){
+  font-weight: 400;
+}
+.font-wn(){
+  font-weight: normal;
+}
+// 字体大小
+.font-s0(){font-size: 0px;}
+.font-s1(){font-size: 1px;}
+.font-s2(){font-size: 2px;}
+.font-s3(){font-size: 3px;}
+.font-s4(){font-size: 4px;}
+.font-s5(){font-size: 5px;}
+.font-s6(){font-size: 6px;}
+.font-s7(){font-size: 7px;}
+.font-s8(){font-size: 8px;}
+.font-s9(){font-size: 9px;}
+.font-s10(){font-size: 10px;}
+.font-s11(){font-size: 11px;}
+.font-s12(){font-size: 12px;}
+.font-s13(){font-size: 13px;}
+.font-s14(){font-size: 14px;}
+.font-s15(){font-size: 15px;}
+.font-s16(){font-size: 16px;}
+.font-s17(){font-size: 17px;}
+.font-s18(){font-size: 18px;}
+.font-s19(){font-size: 19px;}
+.font-s20(){font-size: 20px;}
+.font-s21(){font-size: 21px;}
+.font-s22(){font-size: 22px;}
+.font-s23(){font-size: 23px;}
+.font-s24(){font-size: 24px;}
+.font-s25(){font-size: 25px;}
+.font-s26(){font-size: 26px;}
+.font-s27(){font-size: 27px;}
+.font-s28(){font-size: 28px;}
+.font-s29(){font-size: 29px;}
+.font-s30(){font-size: 30px;}
+.font-s31(){font-size: 31px;}
+.font-s32(){font-size: 32px;}
+.font-s33(){font-size: 33px;}
+.font-s34(){font-size: 34px;}
+.font-s35(){font-size: 35px;}
+.font-s36(){font-size: 36px;}
+.font-s37(){font-size: 37px;}
+.font-s38(){font-size: 38px;}
+.font-s39(){font-size: 39px;}
+.font-s40(){font-size: 40px;}
+.font-s41(){font-size: 41px;}
+.font-s42(){font-size: 42px;}
+.font-s43(){font-size: 43px;}
+.font-s44(){font-size: 44px;}
+.font-s45(){font-size: 45px;}
+.font-s46(){font-size: 46px;}
+.font-s47(){font-size: 47px;}
+.font-s48(){font-size: 48px;}
+.font-s49(){font-size: 49px;}
+.font-s50(){font-size: 50px;}
+.font-s51(){font-size: 51px;}
+.font-s52(){font-size: 52px;}
+.font-s53(){font-size: 53px;}
+.font-s54(){font-size: 54px;}
+.font-s55(){font-size: 55px;}
+.font-s56(){font-size: 56px;}
+.font-s57(){font-size: 57px;}
+.font-s58(){font-size: 58px;}
+.font-s59(){font-size: 59px;}
+.font-s60(){font-size: 60px;}
+.font-s61(){font-size: 61px;}
+.font-s62(){font-size: 62px;}
+.font-s63(){font-size: 63px;}
+.font-s64(){font-size: 64px;}
+.font-s65(){font-size: 65px;}
+.font-s66(){font-size: 66px;}
+.font-s67(){font-size: 67px;}
+.font-s68(){font-size: 68px;}
+.font-s69(){font-size: 69px;}
+.font-s70(){font-size: 70px;}
+.font-s71(){font-size: 71px;}
+.font-s72(){font-size: 72px;}
+.font-s73(){font-size: 73px;}
+.font-s74(){font-size: 74px;}
+.font-s75(){font-size: 75px;}
+.font-s76(){font-size: 76px;}
+.font-s77(){font-size: 77px;}
+.font-s78(){font-size: 78px;}
+.font-s79(){font-size: 79px;}
+.font-s80(){font-size: 80px;}
+.font-s81(){font-size: 81px;}
+.font-s82(){font-size: 82px;}
+.font-s83(){font-size: 83px;}
+.font-s84(){font-size: 84px;}
+.font-s85(){font-size: 85px;}
+.font-s86(){font-size: 86px;}
+.font-s87(){font-size: 87px;}
+.font-s88(){font-size: 88px;}
+.font-s89(){font-size: 89px;}
+.font-s90(){font-size: 90px;}
+.font-s91(){font-size: 91px;}
+.font-s92(){font-size: 92px;}
+.font-s93(){font-size: 93px;}
+.font-s94(){font-size: 94px;}
+.font-s95(){font-size: 95px;}
+.font-s96(){font-size: 96px;}
+.font-s97(){font-size: 97px;}
+.font-s98(){font-size: 98px;}
+.font-s99(){font-size: 99px;}
+.font-s100(){font-size: 100px;}
+// 最大最小高度
+.min-width(@width){
+  min-width: @width;
+  _width:@width;
+}
+.max-width(@width,@id){
+  max-width: @width;
+  _width:~'expression(document.getElementById("@{id}").offsetHeight>parseInt("@{width}")?"@{width}": "auto")';
+  overflow:hidden;
+}
+.min-height(@height){
+  min-height: @height;
+  _height:@height;
+}
+.max-height(@height,@id){
+  max-height: @height;
+  _height:~'expression(document.getElementById("@{id}").offsetHeight>parseInt("@{height}")?"@{height}": "auto")';
+  overflow:hidden;
+}

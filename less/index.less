@@ -1,0 +1,147 @@
+@charset"utf-8";
+@import "style.less";
+
+// 公共样式
+.common-width{
+	width:1200px;
+	margin:0 auto;
+}
+body{
+	background:#f0f0f4;
+}
+// header 头部
+.header{
+	height:100px;
+	background:#fff;
+	width:100%;
+	.box-shadow(0 8px 18px rgba(0,0,0,0.08));
+	.logo{
+		height:100px;
+		a{
+			line-height: 100px;
+			display: block;
+			font-size:24px;
+			color:#000;
+		}
+	}
+	.header-right{
+		margin:16px 0;
+		a{
+			display: inline-block;
+			width:62px;
+			height:62px;
+			.border-radius(100%);
+			.box-shadow(0 0 7px rgba(0,0,0,0.1));
+			border:4px solid #fff;
+			text-align: center;
+			line-height: 62px;
+			margin-right:40px;
+			background:#FEE94E;
+			color:#fff;
+			font-size:14px;
+			&:nth-child(2){
+				background:#FF2D55; 
+			}
+			&:nth-child(3){
+				background:#5AC8FA;
+			}
+		}
+	}
+}
+// 内容区
+.main{
+	position: relative;
+	padding:60px 0 100px;
+	height:634px;
+	.carousel{
+		position:relative;
+		height:634px;
+		overflow: hidden;
+		width:1200px;
+		ul{
+			position:absolute;
+			display: block;
+			top:0;
+			left:0;
+		}
+		li{
+			float:left;
+			display: block;
+			width:1200px;
+			.li-left{
+				width:430px;
+				height:618px;
+				margin-left:60px;
+				border:8px solid #fff;
+				.box-shadow(0 0 5px rgba(0,0,0,0.2));
+				margin-right:60px;
+			}
+			.li-right{
+				width:550px;
+				height:634px;
+				overflow-y:auto;
+				h2{
+					color:#2D3E4F;
+					line-height: 48px;font-size:34px;
+					font-weight: normal;
+					margin-bottom: 45px;
+				}
+				p{
+					color:#4C5864;
+					line-height: 24px;
+					margin-bottom: 15px;
+				}
+			}
+		}
+	}
+	#prev{
+		position:absolute;
+		bottom:30px;
+		left:500px;
+		span{
+			display: block;
+			.triangle(right,12px,#666);
+		}
+		z-index: 2;
+	}
+	#next{
+		position:absolute;
+		bottom:30px;
+		right:500px;
+		span{
+			display: block;
+			.triangle(left,12px,#334659);
+		}
+		z-index: 2;
+	}
+	#index{
+		position: absolute;
+		bottom: 30px;
+		left: 0;
+		width:100%;
+		text-align: center;
+		color:#334659;
+		font-size:24px;
+		line-height: 24px;
+		span{
+			font-size:24px;
+		}
+		i{
+			font-style:normal;
+			font-size:24px;
+		}
+	}
+}
+// 尾部
+.footer{
+	text-align: right;
+	padding:10px 0 50px;
+	a{
+		display: inline-block;
+		color:#808080;
+		margin-right:50px;
+		&:hover{
+			text-decoration:underline;
+		}
+	}
+}
